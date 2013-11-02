@@ -22,6 +22,7 @@
 		CBECA1B218255AEE003BDA06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBECA19118255AED003BDA06 /* UIKit.framework */; };
 		CBECA1BA18255AEE003BDA06 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBECA1B818255AEE003BDA06 /* InfoPlist.strings */; };
 		CBECA1BC18255AEE003BDA06 /* ScoreKeeperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CBECA1BB18255AEE003BDA06 /* ScoreKeeperTests.m */; };
+		CBECA1CA18255FF8003BDA06 /* TeamScores.m in Sources */ = {isa = PBXBuildFile; fileRef = CBECA1C918255FF8003BDA06 /* TeamScores.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		CBECA1B718255AEE003BDA06 /* ScoreKeeperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScoreKeeperTests-Info.plist"; sourceTree = "<group>"; };
 		CBECA1B918255AEE003BDA06 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CBECA1BB18255AEE003BDA06 /* ScoreKeeperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoreKeeperTests.m; sourceTree = "<group>"; };
+		CBECA1C818255FF8003BDA06 /* TeamScores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamScores.h; sourceTree = "<group>"; };
+		CBECA1C918255FF8003BDA06 /* TeamScores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamScores.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,8 @@
 				CBECA1A618255AEE003BDA06 /* kcdViewController.m */,
 				CBECA1A818255AEE003BDA06 /* Images.xcassets */,
 				CBECA19418255AED003BDA06 /* Supporting Files */,
+				CBECA1C818255FF8003BDA06 /* TeamScores.h */,
+				CBECA1C918255FF8003BDA06 /* TeamScores.m */,
 			);
 			path = ScoreKeeper;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBECA1A718255AEE003BDA06 /* kcdViewController.m in Sources */,
+				CBECA1CA18255FF8003BDA06 /* TeamScores.m in Sources */,
 				CBECA19A18255AEE003BDA06 /* main.m in Sources */,
 				CBECA19E18255AEE003BDA06 /* kcdAppDelegate.m in Sources */,
 			);
