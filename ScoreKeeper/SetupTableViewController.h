@@ -1,5 +1,5 @@
 //
-//  kcdViewController.h
+//  SetupTableViewController.h
 //  ScoreKeeper
 //
 //  Created by Kent C. Dodds on 11/2/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface kcdViewController : UIViewController
+@interface SetupTableViewController : UITableViewController
 
 @end

@@ -20,7 +20,7 @@
     self = [super init];
     
     if (self) {
-        self.numberOfTeams = 2;
+        self.numberOfTeams = MIN_TEAM_COUNT;
         self.teamNames = @[@"Team 1", @"Team 2"];
     }
     
