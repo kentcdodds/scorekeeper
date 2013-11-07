@@ -13,6 +13,7 @@
 #define TEAM_NAMES_SECTION_INDEX      1
 
 @interface SetupTableViewController () <UITextFieldDelegate>
+@property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *teamNameFields;
 
 @property(strong, nonatomic) TeamScores *teamScores;
 
@@ -31,10 +32,17 @@
     if ([segue.destinationViewController isKindOfClass:[RoundsTableViewController class]]) {
         RoundsTableViewController *roundsVC = (RoundsTableViewController *)segue.destinationViewController;
         roundsVC.teamScores = self.teamScores;
-        // Now you can access properties and methods on roundsVC.
-        // You may also want to test the segue.identifier if you have two
-        // segues to the same destination VC, like in my storyboard example.
     }
+}
+- (IBAction)changeNumberOfTeams:(UISegmentedControl *)sender {
+    int teams = sender.selectedSegmentIndex + 2;
+    [self.teamScores setNumberOfTeams:teams];
+    for (UITextField *field in self.teamNameFields) {
+        if (field.tag < [self.teamScores.teamNames count]) {
+            field.text = self.teamScores.teamNames[field.tag];
+        }
+    }
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -45,7 +53,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == TEAM_NAMES_SECTION_INDEX) {
-        return 4;
+        return self.teamScores.numberOfTeams;
     }
     return 1;
 }

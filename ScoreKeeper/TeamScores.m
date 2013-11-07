@@ -20,14 +20,20 @@
     self = [super init];
     
     if (self) {
-        self.numberOfTeams = MIN_TEAM_COUNT;
-        self.teamNames = @[@"Team 1", @"Team 2"];
+        [self setNumberOfTeams: MIN_TEAM_COUNT];
     }
     
     return self;
 }
 
 #pragma mark - Getters and setters
+
+- (NSArray *)teamNames {
+    if (!_teamNames) {
+        _teamNames = [[NSArray alloc] init];
+    }
+    return _teamNames;
+}
 
 - (NSArray *)rounds {
     if (!_rounds) {
@@ -52,6 +58,7 @@
     }
     
     self.teamNames = [names copy];
+    _numberOfTeams = [self.teamNames count];
 
     if ([self.rounds count] > 0) {
         NSMutableArray *mutableRounds = [[NSMutableArray alloc] initWithCapacity:[self.rounds count]];
@@ -78,7 +85,7 @@
 #pragma mark - Helpers
 
 - (void)addScores:(NSArray *)scores {
-    NSMutableArray *mutableRounds = [[NSMutableArray alloc] initWithCapacity:[self.rounds count]];
+    NSMutableArray *mutableRounds = [[NSMutableArray alloc] initWithArray:self.rounds];
     [mutableRounds addObject:scores];
     self.rounds = [[NSArray alloc] initWithArray:mutableRounds];
 }
@@ -101,7 +108,7 @@
 }
 
 - (NSUInteger)numberOfRounds {
-    return self.numberOfRounds;
+    return [self.rounds count];
 }
 
 - (NSArray *)scoresForRound:(NSUInteger)round {

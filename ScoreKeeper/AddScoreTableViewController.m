@@ -7,11 +7,12 @@
 //
 
 #import "AddScoreTableViewController.h"
+#import "RoundsTableViewController.h"
+
 
 @interface AddScoreTableViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *teamLabels;
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *teamScoreFields;
-
 @end
 
 @implementation AddScoreTableViewController
@@ -25,6 +26,17 @@
     }
 }
 
+- (IBAction)saveButtonTouched:(id)sender {
+    NSMutableArray *scores = [[NSMutableArray alloc] initWithCapacity:[self.teamScoreFields count]];
+    for (UITextField *field in self.teamScoreFields) {
+        if (field.tag < [self.teamScores numberOfTeams]) {
+            scores[field.tag] = field.text;
+        }
+    }
+    [self.delegate setScore:scores];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -32,7 +44,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return [self.teamScores numberOfTeams];
 }
 
 # pragma mark - text field delegation
@@ -43,7 +55,7 @@
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField {
-    NSLog(@"Hurray! Ended editing! %@", textField.text);
+    
 }
 
 

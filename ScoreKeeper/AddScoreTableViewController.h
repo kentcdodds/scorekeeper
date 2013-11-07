@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "TeamScores.h"
 
+@protocol AddScoreDelegate;
+
 @interface AddScoreTableViewController : UITableViewController
 
 @property(strong, nonatomic) TeamScores *teamScores;
+@property (weak, nonatomic) id <AddScoreDelegate> delegate;
+
+@end
+
+@protocol AddScoreDelegate <NSObject>
+
+- (void)setScore:(NSArray *)scores;
 
 @end

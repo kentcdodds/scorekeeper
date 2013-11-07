@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "TeamScores.h"
+//#import "AddScoreTableViewController.h"
 
 @interface RoundsTableViewController : UITableViewController
 
 @property(strong, nonatomic) TeamScores *teamScores;
+
+//@property (nonatomic, weak) id<SendScoresProtocol> delegate;
 
 @end

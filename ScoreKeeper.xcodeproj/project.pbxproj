@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CB9CFE6218258BF60036137C /* RoundsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CFE6118258BF60036137C /* RoundsTableViewController.m */; };
-		CB9CFE6718258CA00036137C /* RoundTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CFE6618258CA00036137C /* RoundTableViewCell.m */; };
 		CB9CFE6A182597400036137C /* AddScoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9CFE69182597400036137C /* AddScoreTableViewController.m */; };
+		CBD28574182B634000199A2D /* RoundTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD28573182B634000199A2D /* RoundTableViewCell.m */; };
 		CBECA18E18255AED003BDA06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBECA18D18255AED003BDA06 /* Foundation.framework */; };
 		CBECA19018255AED003BDA06 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBECA18F18255AED003BDA06 /* CoreGraphics.framework */; };
 		CBECA19218255AED003BDA06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBECA19118255AED003BDA06 /* UIKit.framework */; };
@@ -41,10 +41,10 @@
 /* Begin PBXFileReference section */
 		CB9CFE6018258BF60036137C /* RoundsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundsTableViewController.h; sourceTree = "<group>"; };
 		CB9CFE6118258BF60036137C /* RoundsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundsTableViewController.m; sourceTree = "<group>"; };
-		CB9CFE6518258CA00036137C /* RoundTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundTableViewCell.h; sourceTree = "<group>"; };
-		CB9CFE6618258CA00036137C /* RoundTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundTableViewCell.m; sourceTree = "<group>"; };
 		CB9CFE68182597400036137C /* AddScoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddScoreTableViewController.h; sourceTree = "<group>"; };
 		CB9CFE69182597400036137C /* AddScoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddScoreTableViewController.m; sourceTree = "<group>"; };
+		CBD28572182B634000199A2D /* RoundTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundTableViewCell.h; sourceTree = "<group>"; };
+		CBD28573182B634000199A2D /* RoundTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundTableViewCell.m; sourceTree = "<group>"; };
 		CBECA18A18255AED003BDA06 /* ScoreKeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScoreKeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBECA18D18255AED003BDA06 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CBECA18F18255AED003BDA06 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -148,8 +148,8 @@
 				CBECA19418255AED003BDA06 /* Supporting Files */,
 				CBECA1C818255FF8003BDA06 /* TeamScores.h */,
 				CBECA1C918255FF8003BDA06 /* TeamScores.m */,
-				CB9CFE6518258CA00036137C /* RoundTableViewCell.h */,
-				CB9CFE6618258CA00036137C /* RoundTableViewCell.m */,
+				CBD28572182B634000199A2D /* RoundTableViewCell.h */,
+				CBD28573182B634000199A2D /* RoundTableViewCell.m */,
 			);
 			path = ScoreKeeper;
 			sourceTree = "<group>";
@@ -286,8 +286,8 @@
 				CBECA1CA18255FF8003BDA06 /* TeamScores.m in Sources */,
 				CBECA1CD182581F0003BDA06 /* SetupTableViewController.m in Sources */,
 				CBECA19A18255AEE003BDA06 /* main.m in Sources */,
+				CBD28574182B634000199A2D /* RoundTableViewCell.m in Sources */,
 				CBECA19E18255AEE003BDA06 /* kcdAppDelegate.m in Sources */,
-				CB9CFE6718258CA00036137C /* RoundTableViewCell.m in Sources */,
 				CB9CFE6218258BF60036137C /* RoundsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

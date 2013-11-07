@@ -30,6 +30,9 @@
                                                         <segment title="3"/>
                                                         <segment title="4"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="changeNumberOfTeams:" destination="Cba-PQ-Sxd" eventType="valueChanged" id="phh-gp-rdW"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -169,21 +172,27 @@
                     <navigationItem key="navigationItem" title="Score Keeper Teams" id="u9C-SF-zaY">
                         <barButtonItem key="backBarButtonItem" title="Teams" id="6e8-1S-Y2e"/>
                     </navigationItem>
+                    <connections>
+                        <outletCollection property="teamNameFields" destination="SL3-1x-N6A" id="SYa-si-rpK"/>
+                        <outletCollection property="teamNameFields" destination="OO4-Aj-JrB" id="Dco-v1-wLY"/>
+                        <outletCollection property="teamNameFields" destination="EU7-AO-O3a" id="mt0-18-SCV"/>
+                        <outletCollection property="teamNameFields" destination="haB-Zc-lP2" id="CCP-Wn-gQ3"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4wY-BI-CKY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="231" y="-705"/>
         </scene>
-        <!--Table View Controller - Score Keeper-->
+        <!--Rounds Table View Controller - Score Keeper-->
         <scene sceneID="Uyd-Yb-YY5">
             <objects>
-                <tableViewController id="bd0-XL-U77" sceneMemberID="viewController">
+                <tableViewController id="bd0-XL-U77" customClass="RoundsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="8Ay-2l-RhY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="xa9-et-YRL">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RoundCell" id="xa9-et-YRL" customClass="RoundTableViewCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xa9-et-YRL" id="CyK-Ml-53I">
@@ -191,13 +200,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Round 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBo-wh-TE0">
-                                            <rect key="frame" x="20" y="6" width="66" height="21"/>
+                                            <rect key="frame" x="20" y="6" width="88" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="139" translatesAutoresizingMaskIntoConstraints="NO" id="Y4Y-ub-jkK">
-                                            <rect key="frame" x="161" y="6" width="139" height="82"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="162" translatesAutoresizingMaskIntoConstraints="NO" id="Y4Y-ub-jkK">
+                                            <rect key="frame" x="138" y="6" width="162" height="82"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <string key="text">Team 1: 0
 Team 2: 0
@@ -208,6 +217,10 @@ Team 4: 0</string>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="roundLabel" destination="lBo-wh-TE0" id="JNS-0o-1HN"/>
+                                    <outlet property="scoresLabel" destination="Y4Y-ub-jkK" id="2t9-Sv-svw"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -228,7 +241,7 @@ Team 4: 0</string>
             </objects>
             <point key="canvasLocation" x="638" y="-705"/>
         </scene>
-        <!--Add Score Table View Controller - Root View Controller-->
+        <!--Add Score Table View Controller - Add Round Score-->
         <scene sceneID="f8F-XL-pPJ">
             <objects>
                 <tableViewController id="EjS-Dc-bCc" customClass="AddScoreTableViewController" sceneMemberID="viewController">
@@ -250,7 +263,7 @@ Team 4: 0</string>
                                                     <rect key="frame" x="203" y="7" width="97" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="EjS-Dc-bCc" id="rW2-Em-QNY"/>
                                                     </connections>
@@ -275,12 +288,12 @@ Team 4: 0</string>
                                                     <rect key="frame" x="203" y="7" width="97" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="EjS-Dc-bCc" id="2QY-uE-sxU"/>
                                                     </connections>
                                                 </textField>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeL-JI-Tdc">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeL-JI-Tdc">
                                                     <rect key="frame" x="20" y="11" width="56" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -300,12 +313,12 @@ Team 4: 0</string>
                                                     <rect key="frame" x="203" y="7" width="97" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="EjS-Dc-bCc" id="vmo-p5-aCz"/>
                                                     </connections>
                                                 </textField>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezf-eK-zpr">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team 3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezf-eK-zpr">
                                                     <rect key="frame" x="20" y="11" width="56" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -325,12 +338,12 @@ Team 4: 0</string>
                                                     <rect key="frame" x="203" y="7" width="97" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="EjS-Dc-bCc" id="C5d-kj-6b6"/>
                                                     </connections>
                                                 </textField>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc2-Nb-FKb">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team 4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc2-Nb-FKb">
                                                     <rect key="frame" x="20" y="11" width="56" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -343,15 +356,15 @@ Team 4: 0</string>
                             </tableViewSection>
                         </sections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="WNt-Ug-cnw">
+                    <navigationItem key="navigationItem" title="Add Round Score" id="WNt-Ug-cnw">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eah-gF-OcD">
                             <connections>
-                                <segue destination="EAS-5B-43Q" kind="unwind" unwindAction="cancelAdd:" id="9Ql-1u-npB"/>
+                                <segue destination="EAS-5B-43Q" kind="unwind" unwindAction="cancelModal:" id="k3V-3P-F1H"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Xje-g2-8N5">
                             <connections>
-                                <segue destination="EAS-5B-43Q" kind="unwind" unwindAction="doneAdding:" id="XCe-aE-5C2"/>
+                                <action selector="saveButtonTouched:" destination="EjS-Dc-bCc" id="Pzf-eR-xIq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

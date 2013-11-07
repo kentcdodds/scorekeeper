@@ -7,20 +7,23 @@
 //
 
 #import "RoundsTableViewController.h"
+#import "RoundTableViewCell.h"
 #import "AddScoreTableViewController.h"
 #import "TeamScores.h"
 
-@interface RoundsTableViewController ()
+@interface RoundsTableViewController () <AddScoreDelegate>
+
 @end
 
 @implementation RoundsTableViewController
 
-- (IBAction)cancelAdd:(UIStoryboardSegue *)segue {
-    // Do nothing.
+- (IBAction)cancelModal:(UIStoryboardSegue *)segue {
+//    NSLog(@"Cancel tapped");
 }
 
-- (IBAction)doneAdding:(UIStoryboardSegue *)segue {
-    // Do something
+- (void)setScore:(NSArray *)scores {
+    [self.teamScores addScores:scores];
+    [self.tableView reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -29,6 +32,7 @@
         if ([[navController.viewControllers lastObject] isKindOfClass:[AddScoreTableViewController class]]) {
             AddScoreTableViewController *addScoresVC = (AddScoreTableViewController *)[navController.viewControllers lastObject];
             addScoresVC.teamScores = self.teamScores;
+            addScoresVC.delegate = self;
         }
     }
 }
@@ -40,14 +44,20 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return [self.teamScores numberOfRounds];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"RoundCell";
+    RoundTableViewCell *cell = (RoundTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    cell.roundLabel.text = [NSString stringWithFormat:@"Round %d", (indexPath.item + 1)];
+    NSMutableArray *scoreStrings = [[NSMutableArray alloc] init];
+    NSArray *scores = [self.teamScores scoresForRound:indexPath.item];
+    for (int i = 0; i < [[self.teamScores scoresForRound:indexPath.item] count]; i++) {
+        [scoreStrings addObject:[NSString stringWithFormat:@"%@: %@", self.teamScores.teamNames[i], scores[i]]];
+    }
+    cell.scoresLabel.text = [scoreStrings componentsJoinedByString:@"\n"];
     
     return cell;
 }

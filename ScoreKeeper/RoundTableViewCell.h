@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RoundTableViewCell : UITableViewCell
-
-@property(weak, nonatomic)NSString *hi;
+@property (weak, nonatomic) IBOutlet UILabel *roundLabel;
+@property (weak, nonatomic) IBOutlet UILabel *scoresLabel;
 
 @end
