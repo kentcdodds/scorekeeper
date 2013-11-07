@@ -15,7 +15,7 @@
 #define CLEAR_DATA_ALERTVIEW_TAG      25
 #define CLEAR_DATA_SECTION            3
 
-@interface SetupTableViewController () <UITextFieldDelegate, UIAlertViewDelegate>
+@interface SetupTableViewController () <UITextFieldDelegate, UIAlertViewDelegate, SetupViewDelegate>
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *teamNameFields;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *numberOfTeamsSegmentedControl;
 
@@ -36,15 +36,19 @@
     if ([segue.destinationViewController isKindOfClass:[RoundsTableViewController class]]) {
         RoundsTableViewController *roundsVC = (RoundsTableViewController *)segue.destinationViewController;
         roundsVC.teamScores = self.teamScores;
+        roundsVC.delegate = self;
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void) reloadData {
+    [self.tableView reloadData];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == CLEAR_DATA_SECTION) {
         [self showClearGameAlertView];
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)showClearGameAlertView {

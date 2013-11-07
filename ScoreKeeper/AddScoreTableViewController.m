@@ -24,6 +24,7 @@
             label.text = self.teamScores.teamNames[label.tag];
         }
     }
+    self.title = [NSString stringWithFormat:@"Round %d Scores", ([self.teamScores numberOfRounds] + 1)];
 }
 
 - (IBAction)saveButtonTouched:(id)sender {
@@ -38,6 +39,10 @@
 }
 
 #pragma mark - Table view data source
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

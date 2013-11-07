@@ -9,6 +9,7 @@
 #import "RoundsTableViewController.h"
 #import "RoundTableViewCell.h"
 #import "AddScoreTableViewController.h"
+#import "SetupTableViewController.h"
 #import "TeamScores.h"
 
 @interface RoundsTableViewController () <AddScoreDelegate>
@@ -18,12 +19,13 @@
 @implementation RoundsTableViewController
 
 - (IBAction)cancelModal:(UIStoryboardSegue *)segue {
-//    NSLog(@"Cancel tapped");
+    // Ignore
 }
 
 - (void)setScore:(NSArray *)scores {
     [self.teamScores addScores:scores];
     [self.tableView reloadData];
+    [self.delegate reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -39,6 +41,10 @@
 
 #pragma mark - Table view data source
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -53,15 +59,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"RoundCell";
-    RoundTableViewCell *cell = (RoundTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    RoundTableViewCell *cell = (RoundTableViewCell *)[tableView dequeueReusableCellWithIdentifier: @"RoundCell" forIndexPath:indexPath];
     BOOL isTotalsCell = indexPath.item == [self.teamScores numberOfRounds];
     NSString *roundLabelText = isTotalsCell ? @"Totals" : [NSString stringWithFormat:@"Round %d", (indexPath.item + 1)];
     
     cell.roundLabel.text = roundLabelText;
     NSMutableArray *scoreStrings = [[NSMutableArray alloc] init];
     NSArray *scores = isTotalsCell ? [self.teamScores totalScores] : [self.teamScores scoresForRound:indexPath.item];
-    for (int i = 0; i < [[self.teamScores scoresForRound:indexPath.item] count]; i++) {
+    for (int i = 0; i < [self.teamScores numberOfTeams]; i++) {
         [scoreStrings addObject:[NSString stringWithFormat:@"%@: %@", self.teamScores.teamNames[i], scores[i]]];
     }
     cell.scoresLabel.text = [scoreStrings componentsJoinedByString:@"\n"];

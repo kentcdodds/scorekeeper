@@ -119,20 +119,14 @@
 }
 
 - (NSArray *)totalScores {
-    int totals[self.numberOfTeams];
-    for (int i = 0; i < self.numberOfTeams; i++) {
-        totals[i] = 0;
-    }
-    for (NSArray *scores in self.rounds) {
+    NSMutableArray *totals = [[NSMutableArray alloc] initWithArray:[self scoresForRound:0]];
+    for (int j = 1; j < [self.rounds count]; j++) {
+        NSArray *scores = self.rounds[j];
         for (int i = 0; i < [scores count]; i++) {
-            totals[i] += [scores[i] integerValue];
+            totals[i] = @([totals[i] integerValue] + [scores[i] integerValue]);
         }
     }
-    NSMutableArray *totalsArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < self.numberOfTeams; i++) {
-        [totalsArray addObject:[NSNumber numberWithInt:totals[i]]];
-    }
-    return [totalsArray copy];
+    return [totals copy];
 }
 
 @end
