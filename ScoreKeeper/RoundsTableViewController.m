@@ -44,16 +44,23 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.teamScores numberOfRounds];
+    int rounds = [self.teamScores numberOfRounds];
+    if (rounds == 0) {
+        return 0;
+    } else {
+        return rounds + 1; // For totals
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"RoundCell";
     RoundTableViewCell *cell = (RoundTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    BOOL isTotalsCell = indexPath.item == [self.teamScores numberOfRounds];
+    NSString *roundLabelText = isTotalsCell ? @"Totals" : [NSString stringWithFormat:@"Round %d", (indexPath.item + 1)];
     
-    cell.roundLabel.text = [NSString stringWithFormat:@"Round %d", (indexPath.item + 1)];
+    cell.roundLabel.text = roundLabelText;
     NSMutableArray *scoreStrings = [[NSMutableArray alloc] init];
-    NSArray *scores = [self.teamScores scoresForRound:indexPath.item];
+    NSArray *scores = isTotalsCell ? [self.teamScores totalScores] : [self.teamScores scoresForRound:indexPath.item];
     for (int i = 0; i < [[self.teamScores scoresForRound:indexPath.item] count]; i++) {
         [scoreStrings addObject:[NSString stringWithFormat:@"%@: %@", self.teamScores.teamNames[i], scores[i]]];
     }

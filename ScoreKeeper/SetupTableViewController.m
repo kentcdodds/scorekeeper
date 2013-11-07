@@ -11,9 +11,13 @@
 #import "RoundsTableViewController.h"
 
 #define TEAM_NAMES_SECTION_INDEX      1
+#define CLEAR_SCORE_TAG               10
+#define CLEAR_DATA_ALERTVIEW_TAG      25
+#define CLEAR_DATA_SECTION            3
 
-@interface SetupTableViewController () <UITextFieldDelegate>
+@interface SetupTableViewController () <UITextFieldDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *teamNameFields;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *numberOfTeamsSegmentedControl;
 
 @property(strong, nonatomic) TeamScores *teamScores;
 
@@ -34,6 +38,35 @@
         roundsVC.teamScores = self.teamScores;
     }
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == CLEAR_DATA_SECTION) {
+        [self showClearGameAlertView];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
+}
+
+- (void)showClearGameAlertView {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"You Sure?"
+                                                            message:@"Are you sure you want to clear all scores?" delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Yes", nil];
+        alertView.tag = CLEAR_DATA_ALERTVIEW_TAG;
+        [alertView show];
+        return;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == CLEAR_DATA_ALERTVIEW_TAG) {
+        if (buttonIndex == 1) {
+            self.teamScores = nil;
+            self.numberOfTeamsSegmentedControl.selectedSegmentIndex = 0;
+            [self.tableView reloadData];
+        }
+    }
+}
+
 - (IBAction)changeNumberOfTeams:(UISegmentedControl *)sender {
     int teams = sender.selectedSegmentIndex + 2;
     [self.teamScores setNumberOfTeams:teams];
@@ -48,7 +81,11 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    if ([self.teamScores numberOfRounds] < 1) {
+        return 3;
+    } else {
+        return 4;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

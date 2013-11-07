@@ -112,7 +112,7 @@
 }
 
 - (NSArray *)scoresForRound:(NSUInteger)round {
-    if (round > [self.rounds count]) {
+    if (round >= [self.rounds count]) {
         return nil;
     }
     return self.rounds[round];
